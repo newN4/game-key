@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY GAME KEY</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: #080d0b;
+            color: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 420px;
+            padding: 35px 25px;
+            text-align: center;
+            background: #111a15;
+            border: 1px solid #38ff87;
+            border-radius: 20px;
+            box-shadow: 0 0 25px #20ff6530;
+        }
+
+        .logo {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #38ff87;
+            font-size: 30px;
+            margin: 10px 0;
+        }
+
+        p {
+            color: #a7b8ad;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0 12px;
+            border: 1px solid #334b3c;
+            border-radius: 10px;
+            background: #080d0b;
+            color: white;
+            font-size: 15px;
+            text-align: center;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #38ff87;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #38ff87;
+            color: #07110b;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #19db69;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .hint {
+            font-size: 12px;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="logo">🎮</div>
+
+        <h1>MY GAME KEY</h1>
+
+        <p>กรอกคีย์เพื่อปลดล็อกฟังก์ชัน</p>
+
+        <input
+            type="text"
+            id="keyInput"
+            placeholder="ENTER YOUR KEY"
+            autocomplete="off"
+        >
+
+        <button onclick="checkKey()">
+            ตรวจสอบคีย์
+        </button>
+
+        <div id="result" role="status"></div>
+
+        <p class="hint">
+            MY GAME KEY SYSTEM
+        </p>
+    </div>
+
+    <script>
+        // คีย์ตัวอย่างสำหรับทดลองเท่านั้น
+        const validKeys = [
+            "GAME-2026-ABCD",
+            "NEON-1234-KEYX"
+        ];
+
+        function checkKey() {
+            const key = document
+                .getElementById("keyInput")
+                .value.trim().toUpperCase();
+
+            const result = document.getElementById("result");
+
+            if (key === "") {
+                result.style.color = "#ffcc66";
+                result.textContent = "กรุณากรอกคีย์ก่อน";
+                return;
+            }
+
+            if (validKeys.includes(key)) {
+                result.style.color = "#38ff87";
+                result.textContent =
+                    "✓ คีย์ถูกต้อง! ปลดล็อกสำเร็จ";
+            } else {
+                result.style.color = "#ff6262";
+                result.textContent =
+                    "✕ คีย์ไม่ถูกต้อง กรุณาลองใหม่";
+            }
+        }
+
+        // กด Enter เพื่อตรวจสอบคีย์
+        document.getElementById("keyInput")
+            .addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    checkKey();
+                }
+            });
+    </script>
+
+</body>
+</html>
